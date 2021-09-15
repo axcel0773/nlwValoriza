@@ -1,26 +1,14 @@
+import "reflect-metadata";
 import express from "express";
 
-// @types/express
+import { router } from "./routes";
+
+import "./database";
+
 const app = express();
 
+app.use(express.json());
 
-/* 
-    GET = Buscar uma informação
-    POST = Inserir (Criar) uma informação
-    PUT = Alterar uma informação
-    DELETE = Remover um dado
-    PATCH = Alterar uma informação específica
-*/
+app.use(router);
 
-app.get("/test", (request, response) => {
-    //Request => Entrando
-    //Response => Saindo
-    return response.send("Olá mundo");
-});
-
-app.post("/test-post", (request, response) => {
-    return response.send("Olá mundo método POST");
-});
-
-//http://localhost:3000
-app.listen(3000, () => console.log("O pai ta on"));
+app.listen(3000, () => console.log("Server ON"));
